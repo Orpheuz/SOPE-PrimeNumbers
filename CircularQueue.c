@@ -66,12 +66,12 @@ void queue_put(CircularQueue *q, QueueElem value) {
 //------------------------------------------------------------------------------------------ 
 // Removes element at the head of queue 'q' and returns its 'value' 
 QueueElem queue_get(CircularQueue *q) {
-	QueueElem head;
+	QueueElem temp;
 
 	sem_wait(&q->full);
 	pthread_mutex_lock(&q->mutex);
 
-	head = q->v[q->first];
+	temp = q->v[q->first];
 
 	q->first++;
 	if(q->first >= q->capacity)
@@ -80,7 +80,7 @@ QueueElem queue_get(CircularQueue *q) {
 	pthread_mutex_unlock(&q->mutex);
 	sem_post(&q->empty);
 
-	return head;
+	return temp;
 } 
 
 //------------------------------------------------------------------------------------------ 
