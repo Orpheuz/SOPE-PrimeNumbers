@@ -2,6 +2,8 @@
 #include <stdlib.h> 
 #include <pthread.h> 
 #include <semaphore.h>
+#include <sys/types.h>
+#include <sys/mman.h>
 
 //------------------------------------------------------------------------------------------ 
 // Type of the circular queue elements 
@@ -89,13 +91,4 @@ QueueElem queue_get(CircularQueue *q) {
 void queue_destroy(CircularQueue *q) {
 	free(q->v);
 	free(q);
-}
-
-int main(int argc, char* argv[]) {
-	CircularQueue *q;
-	queue_init(&q, 10);
-	queue_put(q, 3);
-	printf("%i\n", q->first);
-	queue_destroy(q);
-	return 0;
 }

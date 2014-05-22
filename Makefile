@@ -1,4 +1,2 @@
-all: CircularQueue PrimeNumberGenerator
-	mkdir -p bin
-	gcc CircularQueue.c -o -pthread bin/CircularQueue -Wall
-	gcc PrimeNumberGenerator.c -o bin/PrimeNumberGenerator -Wall
+all: 
+	gcc -Wall primes.c CircularQueue.h -o bin/primes -lm -pthread -lrt
